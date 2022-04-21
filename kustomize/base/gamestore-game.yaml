@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: gamestore-game
+  name: gamestore-game
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gamestore-game
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: gamestore-game
+    spec:
+      containers:
+      - image: gamestore-game:0.0.1-SNAPSHOT
+        name: gamestore-game
+        imagePullPolicy: Never
+        readinessProbe:
+          httpGet:
+            port: 9001
+            path: /actuator/health/readiness
+          initialDelaySeconds: 60
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            port: 9001
+            path: /actuator/health/liveness
+          initialDelaySeconds: 60
+          periodSeconds: 10
+        lifecycle:
+          preStop:
+            exec:
+              command: ["sh", "-c", "sleep 10"]
+        resources: {}
+        volumeMounts:
+          - name: config-volume
+            mountPath: /workspace/config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: gamestore-config
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: gamestore-game
+  name: gamestore-game
+spec:
+  ports:
+  - name: 9001-9001
+    port: 9001
+    protocol: TCP
+    targetPort: 9001
+  selector:
+    app: gamestore-game
+  type: ClusterIP
+status:
+  loadBalancer: {}

@@ -1,0 +1,28 @@
+apiVersion: skaffold/v2beta5
+kind: Config
+metadata:
+  name: gamestore--
+build:
+  local:
+    push: false
+  artifacts:
+  - image: gamestore-game
+    custom:
+      buildCommand: ./mvnw spring-boot:build-image -q -o -pl game -D spring-boot.build-image.imageName=$IMAGE
+  - image: gamestore-user
+    custom:
+      buildCommand: ./mvnw spring-boot:build-image -q -o -pl user -D spring-boot.build-image.imageName=$IMAGE
+  - image: gamestore-store
+    custom:
+      buildCommand: ./mvnw spring-boot:build-image -q -o -pl store -D spring-boot.build-image.imageName=$IMAGE
+  - image: gamestore-management
+    custom:
+      buildCommand: ./mvnw spring-boot:build-image -q -o -pl management -D spring-boot.build-image.imageName=$IMAGE
+deploy:
+  kustomize:
+    paths: ["kustomize/base"]
+profiles:
+  - name: qa
+    deploy:
+      kustomize:
+        paths: ["kustomize/qa"]

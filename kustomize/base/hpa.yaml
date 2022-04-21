@@ -1,0 +1,51 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: gamestore-store
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: gamestore-store
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 30
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: gamestore-management
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: gamestore-management
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 10
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: gamestore-game
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: gamestore-game
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 20
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: gamestore-user
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: gamestore-user
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 20
