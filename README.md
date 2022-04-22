@@ -17,4 +17,6 @@ https://adamtheautomator.com/prometheus-kubernetes/
 https://docs.spring.io/spring-metrics/docs/current/public/prometheus
 Users in management
 Author in game entity
-
+https://www.baeldung.com/spring-cache-tutorial
+Message bus to invalidate cache
+Upload images and game files

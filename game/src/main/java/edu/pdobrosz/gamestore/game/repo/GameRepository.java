@@ -15,4 +15,7 @@ public interface GameRepository extends MongoRepository<Game, String> {
 	@Query("{ 'name' : { $regex: ?0, $options: 'i' } }")
 	public Page<Game> findByNameLike(@Param("name") String name, Pageable p);
 
+	@Query("{ 'name' : { $regex: ?0, $options: 'i' }, 'published': true }")
+	public Page<Game> findByNameLikeAndPublished(@Param("name") String name, Pageable p);
+
 }

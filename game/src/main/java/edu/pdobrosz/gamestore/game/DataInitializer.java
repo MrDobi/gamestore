@@ -55,8 +55,8 @@ public class DataInitializer implements ApplicationRunner {
 				game.setCategory(jsonGame.genres);
 				game.setDescription("Best game ever");
 				game.setPublisher("CDRP");
-				game.setPublished(false);
-				game.setImageUrl("https://picsum.photos/200");
+				game.setPublished(Math.random() < .3);
+				game.setImageUrl("https://picsum.photos/200?random=" + (int) (Math.random() * 1000));
 				game.setUrl(jsonGame.steamUrl);
 				game.setPrice(new BigDecimal("12.50"));
 				game.setLastSaved(new Date(System.currentTimeMillis()));

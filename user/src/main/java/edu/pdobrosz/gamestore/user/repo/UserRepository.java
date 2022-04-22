@@ -10,4 +10,5 @@ import edu.pdobrosz.gamestore.user.model.User;
 public interface UserRepository extends MongoRepository<User, String> {
 
 	User findByNameAndPassword(@Param("name") String name, @Param("password") String password);
+
 }

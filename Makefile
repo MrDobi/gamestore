@@ -18,6 +18,10 @@ user:
 mongo:
 	mongod --dbpath=./data
 
+reset_mongo:
+	rm -rf ./data
+	mkdir ./data
+
 lint:
 	./mvnw spring-javaformat:apply
 

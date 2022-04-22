@@ -15,4 +15,9 @@ public class GameService extends WebService<Game> {
 				.toEntity(GamesListResponse.class).block().getBody();
 	}
 
+	public GamesListResponse getListFilteredPublished(String filterText) throws WebClientResponseException {
+		return webClient.get().uri("search/findByNameLikeAndPublished?name=" + filterText).retrieve()
+				.toEntity(GamesListResponse.class).block().getBody();
+	}
+
 }

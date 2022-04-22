@@ -1,4 +1,4 @@
-package edu.pdobrosz.gamestore.management.config;
+package edu.pdobrosz.gamestore.store.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -15,15 +15,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		// TODO load users from api
 		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		auth.inMemoryAuthentication().withUser("spring").password(encoder.encode("verySecretAndSecure"))
-				.roles("EDITOR");
+		auth.inMemoryAuthentication().withUser("spring").password(encoder.encode("verySecretAndSecure")).roles("USER");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/actuator/**").permitAll().antMatchers("/**")
-				.hasRole("EDITOR").and().formLogin();
+		http.csrf().disable().authorizeRequests().antMatchers("/actuator/**", "/", "/game/*", "/VAADIN/**",
+
+				// the standard favicon URI
+				"/favicon.ico",
+
+				// the robots exclusion standard
+				"/robots.txt",
+
+				// web application manifest
+				"/manifest.webmanifest", "/sw.js", "/offline.html",
+
+				// icons and images
+				"/icons/**", "/images/**", "/styles/**").permitAll().antMatchers("/**").hasRole("USER").and()
+				.formLogin();
 	}
 
 }
