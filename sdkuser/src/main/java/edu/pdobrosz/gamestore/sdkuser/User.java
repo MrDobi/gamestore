@@ -18,4 +18,5 @@ public class User extends RepresentationModel<User> {
 	@Size(min = 8, max = 240)
 	private String name;
 
+    private String[] games;
 }

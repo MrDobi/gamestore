@@ -24,6 +24,8 @@ public class User {
 	private String name;
 
 	@JsonIgnore
-	private String secret;
+	private String password;
+
+	private String[] games;
 
 }

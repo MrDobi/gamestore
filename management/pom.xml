@@ -66,11 +66,6 @@
 
 		<dependency>
 			<groupId>edu.pdobrosz.gamestore</groupId>
-			<artifactId>common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>edu.pdobrosz.gamestore</groupId>
 			<artifactId>sdkgame</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>

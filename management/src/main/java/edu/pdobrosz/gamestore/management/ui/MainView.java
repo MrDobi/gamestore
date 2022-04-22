@@ -11,8 +11,8 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
 
-import edu.pdobrosz.gamestore.management.service.GameService;
 import edu.pdobrosz.gamestore.sdkgame.Game;
+import edu.pdobrosz.gamestore.sdkgame.GameService;
 
 @Route
 public class MainView extends VerticalLayout {

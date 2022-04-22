@@ -31,9 +31,6 @@ public class Game {
 	@Size(min = 8, max = 240)
 	private String name;
 
-	@JsonIgnore
-	private String secret;
-
 	private String[] category;
 
 	@Size(min = 8, max = 1024)
@@ -56,5 +53,8 @@ public class Game {
 
 	@NotNull
 	private Date lastSaved;
+
+	@JsonIgnore
+	private String developerEmail;
 
 }

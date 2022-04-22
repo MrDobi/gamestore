@@ -1,7 +1,6 @@
-package edu.pdobrosz.gamestore.management.service;
+package edu.pdobrosz.gamestore.sdkgame;
 
 import edu.pdobrosz.gamestore.common.ListResponse;
-import edu.pdobrosz.gamestore.sdkgame.Game;
 
 public class GamesListResponse extends ListResponse<Game> {
 

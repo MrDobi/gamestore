@@ -1,12 +1,9 @@
-package edu.pdobrosz.gamestore.management.service;
+package edu.pdobrosz.gamestore.sdkgame;
 
-import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import edu.pdobrosz.gamestore.common.WebService;
-import edu.pdobrosz.gamestore.sdkgame.Game;
 
-@Service
 public class GameService extends WebService<Game> {
 
 	public GameService() {

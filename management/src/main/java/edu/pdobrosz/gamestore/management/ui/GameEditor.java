@@ -15,8 +15,8 @@ import com.vaadin.flow.spring.annotation.UIScope;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import edu.pdobrosz.gamestore.management.service.GameService;
 import edu.pdobrosz.gamestore.sdkgame.Game;
+import edu.pdobrosz.gamestore.sdkgame.GameService;
 
 /**
  * A simple example to introduce building forms. As your real application is probably much
