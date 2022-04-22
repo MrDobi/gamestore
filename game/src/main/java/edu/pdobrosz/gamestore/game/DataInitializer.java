@@ -1,6 +1,8 @@
 package edu.pdobrosz.gamestore.game;
 
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.sql.Date;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -45,11 +47,20 @@ public class DataInitializer implements ApplicationRunner {
 
 		if (gameRepository != null && gameRepository.count() == 0) {
 			for (Object gamePlain : games) {
-				JSONGame game = objectMapper.readValue(gamePlain.toString(), JSONGame.class);
+				JSONGame jsonGame = objectMapper.readValue(gamePlain.toString(), JSONGame.class);
 
-				Game newGame = new Game();
-				newGame.setName(game.title);
-				gameRepository.save(newGame);
+				Game game = new Game();
+				game.setName(jsonGame.title);
+				game.setGroupId(jsonGame.title);
+				game.setCategory(jsonGame.genres);
+				game.setDescription("Best game ever");
+				game.setPublisher("CDRP");
+				game.setPublished(false);
+				game.setImageUrl("https://picsum.photos/200");
+				game.setUrl(jsonGame.steamUrl);
+				game.setPrice(new BigDecimal("12.50"));
+				game.setLastSaved(new Date(System.currentTimeMillis()));
+				gameRepository.save(game);
 			}
 		}
 	}
